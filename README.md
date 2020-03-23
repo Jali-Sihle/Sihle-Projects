@@ -1,2 +1,2 @@
 # Sihle-Projects
-Projects and Programs that I've built
+These are Personal projects as well as some projects that we complted at College
