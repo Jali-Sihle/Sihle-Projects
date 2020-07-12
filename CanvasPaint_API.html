@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        *{
+            margin:0;box-sizing:border-box;
+        }
+
+        #canvas{
+            border:2px solid #ffd800;
+
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        window.addEventListener('load', function () {
+            //1 get element 
+            const canvas = document.getElementById('canvas');
+            //get context
+            var cxt = canvas.getContext('2d');
+            //paining 
+            let painting = false;
+            //dimetions of windows (window objects innerheight,innerwidth)
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            //functions start painting /stop paint/do the painting 
+
+            function Startpos() {
+                painting = true;
+                draw(e);
+
+            }
+
+            function endPosition() {
+                painting = false;
+                cxt.beginPath();//beginning a new path, not continueing from the previous path
+            }
+
+            function draw(e) {
+                if (!painting) return;
+                cxt.lineWidth = 8;
+                cxt.lineCap = 'round';
+
+                //draw the line 
+                cxt.lineTo(e.clientX, e.clientY);// from client browser
+                cxt.stroke();
+                cxt.beginPath();
+
+                cxt.moveTo(e.clientX, e.clientY);
+            }
+            //events that are going to handle all the function;
+            window.addEventListener('mousedown', Startpos);
+            window.addEventListener('mouseup', endPosition);
+            window.addEventListener('mousemove', draw);
+        })
+    </script>
+</body>
+</html>
